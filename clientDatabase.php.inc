@@ -20,11 +20,6 @@
       {
 	echo "Could not connect to database".PHP_EOL;
       }
-      else
-      {
-	echo "Successfully connected to database".PHP_EOL;
-      }
-      
     }
     
     public function __destruct()
@@ -67,6 +62,7 @@
 		alert('Username already exists')
 		location='index.html'
 	      </script>";
+	exit(0);
       }
       
       $password = $this->createSaltPassword($password);
@@ -88,7 +84,10 @@
       
       if ($this->verifyName($name) == 0)
       {
-	echo "Username: $name does not exist".PHP_EOL;
+	echo "<script language='JavaScript'>
+	    alert('Username or Password was entered incorrectly')
+	    location='index.html'
+	    </script>";
 	exit(0);
       }
       
@@ -107,6 +106,7 @@
 	    alert('Username or Password was entered incorrectly')
 	    location='index.html'
 	    </script>";
+      exit(0);
     }
   }
 ?>

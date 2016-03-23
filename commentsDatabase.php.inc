@@ -17,10 +17,6 @@
       {
 	echo "Could not connect to database".PHP_EOL;
       }
-      else
-      {
-	echo "Successfully connected to database".PHP_EOL;
-      }
     }
     
     public function __destruct()
@@ -30,8 +26,9 @@
     
     public function addComment($gameName, $text)
     {
+      $timeStamp = date('Y-m-d H:i:s');
       $username = $_SESSION["username"];
-      $query = "insert into comments(gameName, username, text) values('$gameName','$username', '$text');";
+      $query = "insert into comments(gameName, username, text, dateAdded) values('$gameName','$username', '$text', '$timeStamp');";
       $results = $this->database->query($query);
       
     }
@@ -46,7 +43,7 @@
       {
 	while($comments = $results->fetch_assoc())
 	{
-	  $allComments[$counter] = array($comments["username"], $comments["text"]);
+	  $allComments[$counter] = array($comments["username"], $comments["text"], $comments["dateAdded"]);
 	  $counter++;
 	}
       }

@@ -5,5 +5,5 @@ create table comments
   gameName varchar(100),
   username varchar(100),
   text varchar(255),
-  dateAdded dateTime
+  dateAdded timeStamp
 );

@@ -17,10 +17,6 @@
       {
 	echo "Could not connect to database".PHP_EOL;
       }
-      else
-      {
-	echo "Successfully connected to database".PHP_EOL;
-      }
     }
     
     public function __destruct()
@@ -28,9 +24,17 @@
       $this->database->close();
     }
     
-    public function addGame($name, $url, $genre, $genre2="", $genre3="")
+    public function addGame($name, $genre, $genre2="", $genre3="")
     {
-      
+      $username = $_SESSION['username'];
+      $query = "insert into games(uploader, name, genre, genre2, genre3) values('$username', '$name', '$genre', '$genre2', '$genre3');";
+      $results = $this->database->query($query);
+      if ($results)
+      {
+	header("Location: homepage.html");
+	exit(0);
+      }
+      echo "failed to add game".PHP_EOL;
     }
     
     public function findGame($name)

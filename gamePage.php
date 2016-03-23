@@ -3,7 +3,7 @@ require_once("commentsDatabase.php.inc");
 $database = new commentsDB("connectInfo.ini");
 $status = $_GET["q"];
 $game = $_GET["game"];
-if ($status == "changed")
+if ($status == "1")
 {
   $comment = $_POST["comment"];
   $database->addComment($game, $comment);
@@ -39,13 +39,14 @@ for($i=0; $i<sizeof($comments); $i++)
   echo "<div id='comment'>";
   $user = $comments[$i][0];
   $text = $comments[$i][1];
+  $timeStamp = $comments[$i][2];
   if ($user == $_SESSION['username'])
   {
-    echo "<p><b>You</b></p>";
+    echo "<p><b>You</b><i>$timeStamp</i></p>";
   }
   else
   {
-    echo "<p><b>$user</b></p>";
+    echo "<p><b>$user</b><i>$timeStamp</i></p>";
   }
   echo "<p>$text</p>";
   echo "</div>";

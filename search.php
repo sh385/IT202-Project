@@ -37,10 +37,18 @@ else
 }
 
 #Prints out link for each game 
-for ($i=0; $i<sizeof($results); $i++)
+if (sizeof($results) == 0)
 {
-  $game = $results[$i];
-  echo "<a id='gameName' href='gamePage.php?q=0&game=$game'>".$game."</a>".PHP_EOL;
+  echo "No games found".PHP_EOL;
+}
+
+else
+{
+  for ($i=0; $i<sizeof($results); $i++)
+  {
+    $game = $results[$i];
+    echo "<a id='gameName' href='gamePage.php?q=0&game=$game'>".$game."</a>".PHP_EOL;
+  }
 }
 
 ?>
