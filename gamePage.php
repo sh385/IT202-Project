@@ -1,8 +1,11 @@
 <?php
 require_once("commentsDatabase.php.inc");
+require_once("gameDatabase.php.inc");
+$gamedb = new gameDB("connectInfo.ini");
 $database = new commentsDB("connectInfo.ini");
 $status = $_GET["q"];
 $game = $_GET["game"];
+$url = $gamedb->getUrl($game);
 if ($status == "1")
 {
   $comment = $_POST["comment"];
@@ -27,7 +30,7 @@ echo ' <head>
 	</ul>
       </head>
       <body>
-	<h2>'.$game.'</h2>
+	<h2><a href='.$url.'>'.$game.'</a></h2>
       </body>
       <h3>Write a Comment</h3>
       <form action="gamePage.php?q=1&game='.$game.'" method="post">

@@ -24,10 +24,18 @@
       $this->database->close();
     }
     
-    public function addGame($name, $genre, $genre2="", $genre3="")
+    public function getUrl($game)
+    {
+      $query = "select * from games where name = '$game'";
+      $results = $this->database->query($query);
+      $resultsArray = $results->fetch_assoc();
+      return $resultsArray["url"];
+    }
+    
+    public function addGame($name, $genre, $genre2="", $genre3="", $url)
     {
       $username = $_SESSION['username'];
-      $query = "insert into games(uploader, name, genre, genre2, genre3) values('$username', '$name', '$genre', '$genre2', '$genre3');";
+      $query = "insert into games(uploader, name, genre, genre2, genre3, url) values('$username', '$name', '$genre', '$genre2', '$genre3', '$url');";
       $results = $this->database->query($query);
       if ($results)
       {

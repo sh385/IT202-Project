@@ -6,5 +6,6 @@ create table games
   name varchar(200),
   genre varchar(100),
   genre2 varchar(100), 
-  genre3 varchar(100)
+  genre3 varchar(100),
+  url varchar(200)
 );
