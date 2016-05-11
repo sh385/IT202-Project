@@ -1,6 +1,8 @@
 <?php
 require_once("commentsDatabase.php.inc");
 require_once("gameDatabase.php.inc");
+include "header.php";
+include "footer.php";
 $gamedb = new gameDB("connectInfo.ini");
 $database = new commentsDB("connectInfo.ini");
 $status = $_GET["q"];
@@ -13,30 +15,21 @@ if ($status == "1")
 }
 $comments = $database->getComments($game);
 echo ' <head>
-	<title>Homepage</title>
-	<link rel="stylesheet" href="menuStyle.css">
-	<h1><a id="websiteName" href="homepage.html">WEBSITE</a></h1>
-	<ul id="menu">
-	  <li><a href="search.php?type=genre&genre=action">Action</a></li>
-	  <li><a href="search.php?type=genre&genre=adventure">Adventure</a></li>
-	  <li><a href="search.php?type=genre&genre=racing">Racing</a></li>
-	  <li><a href="search.php?type=genre&genre=shooter">Shooting</a></li>
-	  <li><a href="search.php?type=genre&genre=puzzle">Puzzle</a></li>
-	  <li><a href="search.php?type=genre&genre=platformer">Platformer</a></li>
-	  <li><form action="search.php?type=name" method="post">
-	  <input id="searchBox" type="text" name="searchBox" placeholder="Search">
-	  <input id="searchButton" type="submit" name="search" value="Search">
-	  </form></li>
-	</ul>
       </head>
       <body>
 	<h2><a href='.$url.'>'.$game.'</a></h2>
       </body>
       <h3>Write a Comment</h3>
-      <form action="gamePage.php?q=1&game='.$game.'" method="post">
-	<textarea rows="5" cols="50" name="comment"></textarea></br>
-	<input type="submit" name="submit" value="Add Comment">
-      </form>';
+      <div class="row">
+	<div class="col-lg-4">
+	  <form action="gamePage.php?q=1&game='.$game.'" method="post">
+	    <div class="form-group">
+	      <textarea class="form-control" type="text" rows="5" cols="50" name="comment"></textarea></br>
+	      <input class="form-control" type="submit" name="submit" value="Add Comment">
+	    </div>
+	  </form>
+	</div>
+      </div>';
 for($i=0; $i<sizeof($comments); $i++)
 {
   echo "<div id='comment'>";

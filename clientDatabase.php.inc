@@ -98,7 +98,7 @@
       if (isset($client['clientPassword']))
       {
 	$_SESSION['username'] = $client['clientName'];
-	header("Location: homepage.html");
+	header("Location: homepage.php");
 	exit(0);
       }
       
