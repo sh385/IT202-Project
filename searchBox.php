@@ -1,12 +1,5 @@
 <?php
 require_once("gameDatabase.php.inc");
-include "header.php";
-include "footer.php";
-echo '	<head>
-	  </head>
-	  <body>
-	    <a href="addGame.php"> Click Here to Upload a Game </a>
-	  </body>';
       
 $database = new gameDB("connectInfo.ini");
 $name = $_GET["name"];

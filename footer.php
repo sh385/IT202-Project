@@ -3,17 +3,25 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
-function showResults(text) {
+function showResults() {
   var xhttp = new XMLHttpRequest();
-  var gameName = text; 
-  var theDiv = document.getElementById("results");
+  var div = document.getElementById("results");
+  var text = document.getElementById("searchBox").value;
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       var arr = JSON.parse(xhttp.responseText);
-      document.getElementById("results").innerHTML = arr[0];
+      for (var i = 0; i < arr.length; i++)
+      {
+	var par = document.createElement("p");
+	var tag = document.createElement("a");
+	tag.setAttribute("href", "gamePage.php?q=0&game="+arr[i]);
+	tag.innerHTML = arr[i];
+	par.appendChild(tag);
+	div.appendChild(par);
+      }
     }
   };
-  xhttp.open("GET", "search.php?type=name=", true);
+  xhttp.open("GET", "search.php?name="+text, true);
   xhttp.send();
 }
 </script>
@@ -29,15 +37,15 @@ function showResults(text) {
       </div>
     </div>
     <div class="col-lg-4">
-      <form action="search.php?type=name" method="POST" class="form-inline">
+      <form class="form-inline">
 	<div class="form-group">
-	  <input id="searchBox" onkeyup="showResults(this.value)"class="form-control" type="text" name="searchBox" placeholder="Search...">
-	  <input id="searchButton" class="form-control" type="submit" name="search" value="Search">
+	  <input id="searchBox" class="form-control" type="text" name="searchBox" placeholder="Search...">
+	  <button id="searchButton" class="form-control" onclick="showResults()" type="button" name="search" > Search </button>
 	</div>
       </form>
     </div>
-    <div id="results" class="col-lg-4">
-      
-    </div>
-  </div>';
+  </div>
+  <div id="results">
+      <a href="addGame.php"> Click Here to Upload a Game </a>
+    </div>';
 ?>
