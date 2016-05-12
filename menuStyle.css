@@ -1,4 +1,17 @@
-#menu a
+
+#websiteName
 {
-  display: inline-block;
+  font-family: "Times New Roman";
 }
+
+#comments
+{
+  max-width: 425px;
+}
+
+#upload
+{
+  color: blue;
+}
+
+
